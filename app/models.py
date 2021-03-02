@@ -1,4 +1,3 @@
-
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin,current_user
@@ -19,20 +18,20 @@ class PhotoProfile(db.Model):
     pic_path = db.Column(db.String())
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
-class User(UserMixin,db.Model):
-    __tablename__ = 'users'
+# class User(UserMixin,db.Model):
+#     __tablename__ = 'users'
 
-    id = db.Column(db.Integer,primary_key = True)
-    username = db.Column(db.String(255))
-    email = db.Column(db.String(255),unique = True,index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    bio = db.Column(db.String(255))
-    profile_pic_path = db.Column(db.String())
-    password_hash = db.Column(db.String(255))
-    photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
-    pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
-    downvotes = db.relationship('Downvote',backref = 'user',lazy = "dynamic")
-    upvotes = db.relationship('Upvote',backref = 'user',lazy = "dynamic")
+#     id = db.Column(db.Integer,primary_key = True)
+#     username = db.Column(db.String(255))
+#     email = db.Column(db.String(255),unique = True,index = True)
+#     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+#     bio = db.Column(db.String(255))
+#     profile_pic_path = db.Column(db.String())
+#     password_hash = db.Column(db.String(255))
+#     photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
+#     pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
+#     downvotes = db.relationship('Downvote',backref = 'user',lazy = "dynamic")
+#     upvotes = db.relationship('Upvote',backref = 'user',lazy = "dynamic")
     
 
     @property
@@ -60,7 +59,7 @@ class Pitch(db.Model):
     pitch = db.Column(db.String)
     category_id = db.Column(db.Integer)
     date = db.Column(db.DateTime,default=datetime.utcnow)
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    user_id = db.Column(db.ForeignKey("users.id"))
     comments = db.relationship('Comment',backref = 'pitch',lazy="dynamic")
     upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
     downvotes = db.relationship('Downvote', backref = 'pitch', lazy = 'dynamic')
@@ -74,11 +73,12 @@ class Pitch(db.Model):
         db.session.commit()
     
     @classmethod
-    def get_all_pitches(cls):
+    def get_all_pitches(cls,id):
         '''
         Function that queries the databse and returns all the pitches
         '''
-        return Pitch.query.all()
+        pitches = Pitch.query.filter_by(user_id=id).all()
+        return pitches
 
     @classmethod
     def get_pitches_by_category(cls,category_id):
@@ -109,6 +109,7 @@ class Comment(db.Model):
     comment = db.Column(db.String)
     image_path = db.Column(db.String)
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitch.id'))
+    user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     posted = db.Column(db.DateTime,default=datetime.utcnow)
     username = db.Column(db.String)
 

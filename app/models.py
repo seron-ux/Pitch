@@ -180,28 +180,28 @@ class Upvote(db.Model):
     '''
     Function that stores user votes
     '''
-    id = db.Column(db.Integer, primary_key=True)
-    upvote = db.Column(db.Integer,default=1)
-    pitch_id = db.Column(db.Integer,db.ForeignKey('pitch.id'))
-    user_id =  db.Column(db.Integer,db.ForeignKey('users.id'))
+    # id = db.Column(db.Integer, primary_key=True)
+    # upvote = db.Column(db.Integer,default=1)
+    # pitch_id = db.Column(db.Integer,db.ForeignKey('pitch.id'))
+    # user_id =  db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    def save_votes(self):
-        db.session.add(self)
-        db.session.commit()
+    # def save_votes(self):
+    #     db.session.add(self)
+    #     db.session.commit()
 
-    @classmethod
-    def add_upvotes(cls,id):
-        upvote_pitch = Upvote(user = current_user, pitch_id=id)
-        upvote_pitch.save_upvotes()
+    # @classmethod
+    # def add_upvotes(cls,id):
+    #     upvote_pitch = Upvote(user = current_user, pitch_id=id)
+    #     upvote_pitch.save_upvotes()
 
 
-    @classmethod
-    def get_votes(cls, id):
-        upvote = Upvote.query.filter_by(pitch_id=id).all()
-        return upvote
+    # @classmethod
+    # def get_votes(cls, id):
+    #     upvote = Upvote.query.filter_by(pitch_id=id).all()
+    #     return upvote
 
-    def __repr__(self):
-        return f'{self.id_user}:{self.pitch_id}' 
+    # def __repr__(self):
+    #     return f'{self.id_user}:{self.pitch_id}' 
 
 
 

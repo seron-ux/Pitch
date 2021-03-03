@@ -16,29 +16,29 @@ class PhotoProfile(db.Model):
 
     id = db.Column(db.Integer,primary_key = True)
     pic_path = db.Column(db.String())
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-
-class User(UserMixin,db.Model):
-    __tablename__ = 'users'
-
-    id = db.Column(db.Integer,primary_key = True)
-    username = db.Column(db.String(255))
-    email = db.Column(db.String(255),unique = True,index = True)
-    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
-    bio = db.Column(db.String(255))
-    profile_pic_path = db.Column(db.String())
-    password_hash = db.Column(db.String(255))
-    photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
-    pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
-    downvotes = db.relationship('Downvote',backref = 'user',lazy = "dynamic")
-    upvotes = db.relationship('Upvote',backref = 'user',lazy = "dynamic")
-    
-
-    @property
+#     user_id = db.Column(db.Int
     def password(self):
         raise AttributeError('You cannnot read the password attribute')
 
-    @password.setter
+    @password.settereger,db.ForeignKey("users.id"))
+
+# class User(UserMixin,db.Model):
+#     __tablename__ = 'users'
+
+#     id = db.Column(db.Integer,primary_key = True)
+#     username = db.Column(db.String(255))
+#     email = db.Column(db.String(255),unique = True,index = True)
+#     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+#     bio = db.Column(db.String(255))
+#     profile_pic_path = db.Column(db.String())
+#     password_hash = db.Column(db.String(255))
+#     photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
+#     pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
+#     downvotes = db.relationship('Downvote',backref = 'user',lazy = "dynamic")
+#     upvotes = db.relationship('Upvote',backref = 'user',lazy = "dynamic")
+    
+
+#     @property
     def password(self, password):
         self.password_hash = generate_password_hash(password)
 

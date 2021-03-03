@@ -22,20 +22,20 @@ mail = Mail()
 
 simple = SimpleMDE()
 
-# def create_app(config_name):
+def create_app(config_name):
 
-#     app = Flask(__name__)
+    app = Flask(__name__)
 
-#     # Creating the app configurations
+    # Creating the app configurations
     
-#     app.config.from_object(config_options[config_name])
+    app.config.from_object(config_options[config_name])
    
-#     # Initializing flask extensions
-#     bootstrap.init_app(app)
-#     db.init_app(app)
-#     login_manager.init_app(app)
-#     mail.init_app(app)
-#     simple.init_app(app)
+    # Initializing flask extensions
+    bootstrap.init_app(app)
+    db.init_app(app)
+    login_manager.init_app(app)
+    mail.init_app(app)
+    simple.init_app(app)
 
 
     # Registering the blueprint

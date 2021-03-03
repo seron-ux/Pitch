@@ -166,25 +166,25 @@ def view_comments(id):
     return render_template('view_comments.html',comments = comments, id=id)
 
 
-# @main.route('/test/<int:id>')
-# def test(id):
-#     '''
-#     this is route for basic testing
-#     '''
-#     pitch =Pitch.query.filter_by(id=1).first()
-#     return render_template('test.html',pitch= pitch)
+@main.route('/test/<int:id>')
+def test(id):
+    '''
+    this is route for basic testing
+    '''
+    pitch =Pitch.query.filter_by(id=1).first()
+    return render_template('test.html',pitch= pitch)
 
-# @main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
-# @login_required
-# def upvote(pitch_id):
-#     pitch = Pitch.query.get(pitch_id)
-#     user = current_user
-#     pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
-#     if Upvote.query.filter(Upvote.user_id==user.id,Upvote.pitch_id==pitch_id).first():
-#         return  redirect(url_for('main.all'))
-#     new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
-#     new_upvote.save_votes()
-#     return redirect(url_for('main.all'))
+@main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
+@login_required
+def upvote(pitch_id):
+    pitch = Pitch.query.get(pitch_id)
+    user = current_user
+    pitch_upvotes = Upvote.query.filter_by(pitch_id= pitch_id)
+    if Upvote.query.filter(Upvote.user_id==user.id,Upvote.pitch_id==pitch_id).first():
+        return  redirect(url_for('main.all'))
+    new_upvote = Upvote(pitch_id=pitch_id, user = current_user)
+    new_upvote.save_votes()
+    return redirect(url_for('main.all'))
     
 
 @main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])

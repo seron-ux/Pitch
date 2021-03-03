@@ -187,14 +187,14 @@ def upvote(pitch_id):
     return redirect(url_for('main.all'))
     
 
-@main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
-@login_required
-def downvote(pitch_id):
-    pitch = Pitch.query.get(pitch_id)
-    user = current_user
-    pitch_downvotes = Downvote.query.filter_by(pitch_id= pitch_id)
-    if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
-        return  redirect(url_for('main.all'))
-    new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
-    new_downvote.save_votes()
-    return redirect(url_for('main.all'))
+# @main.route('/pitch/downvote/<int:pitch_id>/downvote', methods = ['GET', 'POST'])
+# @login_required
+# def downvote(pitch_id):
+#     pitch = Pitch.query.get(pitch_id)
+#     user = current_user
+#     pitch_downvotes = Downvote.query.filter_by(pitch_id= pitch_id)
+#     if Downvote.query.filter(Downvote.user_id==user.id,Downvote.pitch_id==pitch_id).first():
+#         return  redirect(url_for('main.all'))
+#     new_downvote = Downvote(pitch_id=pitch_id, user = current_user)
+#     new_downvote.save_votes()
+#     return redirect(url_for('main.all'))

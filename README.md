@@ -3,7 +3,7 @@ Abigael chepkemoi
 ## Description
 This application allows users to use that one minute wisely.
 ## GITHUB REPO LINK
-
+https://github.com/seron-ux/pitch.git
 ## Features
 Sign in and see profile after sighning
 Add a pitch based on category

@@ -15,7 +15,7 @@ def index():
     View root page function that returns the index page and its data
     '''
     title = 'Home - Welcome to this side'
-    pitches= Pitch.get_all_pitches(id)
+    pitches= Pitch.query.all()
     return render_template('index.html', title = title, pitches= pitches)
 
 @main.route('/all')
@@ -24,9 +24,9 @@ def all():
     View root page function that returns the index page and its data
     '''
     title = 'Home - Welcome to this side'
-    pitches= Pitch.get_all_pitches()
+    pitches= Pitch.query.all()
 
-    # upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
+    
     return render_template('main.html', title = title, pitches= pitches)
 
 @main.route('/inteview/pitches/')

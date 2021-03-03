@@ -1,9 +1,9 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField,TextAreaField,SubmitField, RadioField,SelectField
-from wtforms.validators import Required
+# from flask_wtf import FlaskForm
+# from wtforms import StringField,TextAreaField,SubmitField, RadioField,SelectField
+# from wtforms.validators import Required
 
-class CommentsForm(FlaskForm):
-    comment = TextAreaField('Comment', validators=[Required()])
+# class CommentsForm(FlaskForm):
+#     comment = TextAreaField('Comment', validators=[Required()])
 
     
 

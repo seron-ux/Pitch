@@ -19,18 +19,18 @@ class Config:
     SIMPLEMDE_USE_CDN = True
 
 
-class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    pass
+# class ProdConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+#     pass
 
-class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitch_test'
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+# class TestConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitch_test'
+#     # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     
-class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitches'
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    DEBUG = True
+# class DevConfig(Config):
+#     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Access@localhost/pitches'
+#     # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+#     DEBUG = True
 
 config_options = {
 'development':DevConfig,
